@@ -162,22 +162,6 @@ $ npm test
 Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin *Message*-kohtaan.
 
 
-### Tehtävän toisen osan ratkaiseminen Pythonilla tai javaScriptillä
-
-Tehtävän toinen osa on mahdollista ratkaista myös Pythonilla tai JavaScriptillä, joskin se ei ole oppimisen näkökulmasta suositeltavaa.
-
-Mikäli ratkaiset tehtävän vaihtoehtoisilla kielillä, luo itse tarvitsemasi lähdekooditiedostot ja muuta [package.json](./package.json)-tiedostossa `start`-skriptin tilalle oman ohjelmasi käynnistyskomento, esim. `node ./src/usersAndPosts.js` tai `python3 users_and_posts.py`. Käyttämästäsi kielestä riippumatta ohjelman tulee käynnistyä seuraavalla komennolla:
-
-```sh
-$ npm start
-```
-
-Tehtävä tarkastetaan käyttämästäsi kielestä riippumatta samalla komennolla, joten varmista, että myös seuraava komento toimii:
-
-```sh
-$ npm test
-```
-
 ## Vinkit datan käsittelyyn
 
 Käyttäjien ja heidän postauksiensa yhdistämiseksi yksi lähestymistapa on käydä käyttäjät läpi `map`-metodilla ja muodostaa jokaisesta käyttäjästä uusi olio, jolla on alkuperäisten tietojen lisäksi taulukko postauksia.
