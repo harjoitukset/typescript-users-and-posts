@@ -178,7 +178,7 @@ Cake or pie?
 He stood over the body in the fading light`.split('\n');
 
 
-/* Running the tests bay be very slow due to transpilation. Therefore we set a 20 second timeout. */
+/* Running the tests may be very slow due to transpilation. Therefore we set a 20 second timeout. */
 jest.setTimeout(20_000);
 
 test('`npm start` prints titles of each post grouped by users', async () => {
