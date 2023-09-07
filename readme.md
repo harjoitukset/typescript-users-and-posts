@@ -97,7 +97,7 @@ export default interface Post {
 }
 ```
 
-💡 TypeScript-tyyppejä voidaan muodostaa manuaalisesti, mutta tyyppejä voidaan myös generoida varsin suoraviivaisesti olemassa oleville JSON-tietorakenteille esim. palveluissa [http://json2ts.com/](http://json2ts.com/) tai [https://app.quicktype.io/](https://app.quicktype.io/), joista voi olla sinulle hyötyä tässä tehtävässä.
+💡 TypeScript-tyyppejä voidaan muodostaa manuaalisesti, mutta tyyppejä voidaan myös generoida varsin suoraviivaisesti olemassa oleville JSON-tietorakenteille esim. ChatGPT:n tai [muiden online-työkalujen](https://www.google.com/search?q=json+to+typescript+type+online) avulla. Jos generoit tyypit automaattisesti, lisää koodiisi kommenttina lähdeviite käyttämääsi palveluun.
 
 
 ## Osa 2: Käyttäjien ja postausten yhdisteleminen (3p)
