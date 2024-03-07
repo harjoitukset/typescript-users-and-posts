@@ -1,0 +1,25 @@
+{
+    "tests": [
+      {
+        "name": "Part 1&#58; Post interface &#40;2p&#41;",
+        "setup": "",
+        "run": "cat src/types/Post.ts",
+        "input": "",
+        "output": "string",
+        "comparison": "included",
+        "timeout": 1,
+        "points": 2
+      },
+      {
+        "name": "Part 2&#58; Combining Users with Posts &#40;3p&#41;",
+        "setup": "npm install",
+        "run": "npm test",
+        "input": "",
+        "output": "",
+        "comparison": "included",
+        "timeout": 1,
+        "points": 3
+      }
+    ]
+  }
+  
