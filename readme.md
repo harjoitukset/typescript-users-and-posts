@@ -125,7 +125,7 @@ Postaukset voidaan yhdistää käyttäjiin vertailemalla `post`-objektien `userI
 
 Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muuta nimiä, otsikoita tai niiden keskinäistä järjestystä. Käyttäjien ja kunkin käyttäjän omien postausten tulee olla samassa järjestyksessä keskenään kuin annetuissa JSON-tiedostoissa.
 
-💡 Ongelma voitaisiin ratkaista esimerkiksi sisäkkäisillä toistorakenteilla, mutta tässä tehtävässä tarkoituksena on harjoitella mm. `map`-, `filter`-, `forEach`- ja `reduce`-operaatioita. Suosittelemme siis vahvasti perehtymään esimerkiksi seuraaviin lähteisiin:
+💡 Ongelma voitaisiin ratkaista esimerkiksi sisäkkäisillä toistorakenteilla, mutta tässä tehtävässä tarkoituksena on harjoitella ECMAScriptin edistyneempiä ominaisuuksia sekä esimerkiksi `map`-, `filter`- ja `forEach`-taulukkofunktioita. Suosittelemme siis vahvasti perehtymään esimerkiksi seuraaviin lähteisiin:
 
 * [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
