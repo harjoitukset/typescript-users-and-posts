@@ -57,7 +57,7 @@ let posts = require('../posts.json');   // posts: any
 let users = require('../users.json');   // users: any
 ```
 
-`require`-funktio voi palauttaa mitä tahansa JavaScript- tai JSON-tietotyyppejä, joten sen paluuarvon tyyppi on TypeScriptissä `any`. Käytännössä molemmat JSON-tiedostot sisältävät taulukon käyttäjistä ja heihin liittyvistä viesteistä (post), eli niiden tyypit voidaan kertoa TypeScript-kääntäjälle `as`-avainsanan avulla:
+`require`-funktio voi palauttaa mitä tahansa JavaScript- tai JSON-tietotyyppejä, joten sen paluuarvon tyyppi on TypeScriptissä `any`. Käytännössä molemmat JSON-tiedostot sisältävät taulukon käyttäjistä ja heihin liittyvistä viesteistä (post), [eli niiden tyypit voidaan kertoa TypeScript-kääntäjälle `as`-avainsanan avulla](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
 
 ```js
 import User from './types/User';
@@ -67,7 +67,7 @@ let users = require('../users.json') as User[];
 let posts = require('../posts.json') as Post[];
 ```
 
-Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva rajapinta (interface).
+Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva rajapinta (interface) omaan tiedostoonsa.
 
 
 ## Osa 1: Post interface (2p)
@@ -102,7 +102,7 @@ export default interface Post {
 
 ## Osa 2: Käyttäjien ja postausten yhdisteleminen (3p)
 
-Tehtävän toisessa osassa sinun tulee toteuttaa skripti [usersAndPosts.ts](./src/usersAndPosts.ts), joka lukee edellä esitellyt JSON-tiedostot ja tulostaa niissä olevien käyttäjien nimet (`firstName lastName`) sekä postausten otsikot (`title`). Tiedot tulee tulostaa siten, että kunkin käyttäjän nimen jälkeen tulostetaan kaikkien kyseisen käyttäjän tekemien postausten otsikot.
+Tehtävän toisessa osassa sinun tulee toteuttaa skripti [usersAndPosts.ts](./src/usersAndPosts.ts), joka lukee edellä esitellyt JSON-tiedostot ja tulostaa niissä olevien käyttäjien nimet sekä postausten otsikot (`title`). Tiedot tulee tulostaa siten, että kunkin käyttäjän nimi tulostetaan muodossa `firstName lastName`, minkä jälkeen tulostetaan kaikkien kyseisen käyttäjän tekemien postausten otsikot.
 
 Postaukset voidaan yhdistää käyttäjiin vertailemalla `post`-objektien `userId`-attribuutteja `user`-objektien `id`-attribuutteihin. Suosittelemme tulostamaan tiedot siten, että ohjelman tuloste noudattaa [Markdown-syntaksia](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), eli esimerkiksi seuraavasti:
 
@@ -123,9 +123,9 @@ Postaukset voidaan yhdistää käyttäjiin vertailemalla `post`-objektien `userI
 ...
 ```
 
-Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muuta nimiä, otsikoita tai niiden keskinäistä järjestystä. Käyttäjien ja kunkin käyttäjän postausten tulee olla samassa järjestyksessä keskenään kuin annetuissa JSON-tiedostoissa.
+Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muuta nimiä, otsikoita tai niiden keskinäistä järjestystä. Käyttäjien ja kunkin käyttäjän omien postausten tulee olla samassa järjestyksessä keskenään kuin annetuissa JSON-tiedostoissa.
 
-💡 Tehtävä voidaan ratkaista perinteisesti sisäkkäisillä toistorakenteilla, mutta tässä tehtävässä voi olla myös hyvä kokeilla JavaScriptin `map`-, `filter`-, `forEach`- tai `reduce`-operaatioita:
+💡 Ongelma voitaisiin ratkaista esimerkiksi sisäkkäisillä toistorakenteilla, mutta tässä tehtävässä tarkoituksena on harjoitella mm. `map`-, `filter`-, `forEach`- ja `reduce`-operaatioita. Suosittelemme siis vahvasti perehtymään esimerkiksi seuraaviin lähteisiin:
 
 * [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 * [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -133,6 +133,7 @@ Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muut
 * [reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
 
 ## Ohjelman suorittaminen ja testaaminen
 
@@ -144,12 +145,13 @@ $ npm start
 
 `start`-skripti sekä testeissä käytetty `test`-skripti on määritetty [package.json](./package.json)-tiedostossa seuraavasti:
 
-```json
+```js
 {
   "scripts": {
     "start": "ts-node src/usersAndPosts.ts",
     "test": "jest --verbose"
-  }
+  },
+  "devDependencies": { /* ... */ }
 }
 ```
 
