@@ -1,3 +1,14 @@
+/**
+ * This test file checks if the output of the `npm start` command is correct.
+ * The output should contain the titles of each post grouped by users.
+ *
+ * This is not a typical unit test, but rather an integration test, as it tests the whole program
+ * and does not call any functions directly.
+ *
+ * Do not modify this file. Also, do not take this file as an example of how to write actual tests
+ * for your code. Rather than executing the code and checking the output, you should test the
+ * individual functions and classes in your code.
+ */
 import { strict as assert } from 'assert';
 import { jest, test } from '@jest/globals';
 import util from 'util';
@@ -5,6 +16,7 @@ import util from 'util';
 // use util.promisify to make `exec` function work with promises: https://stackoverflow.com/a/56095793
 const exec = util.promisify(require('child_process').exec) as (command: string) => Promise<{ stdout: string, stderr: string }>;
 
+// the following string contains the names of the users and the titles of their posts in the correct order
 const expected = `Terry Medhurst
 They rushed out the door.
 The paper was blank.
