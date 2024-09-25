@@ -162,7 +162,7 @@ Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virhera
 
 ## TypeScript
 
-TypeScript itsessään on lisensoitu Apache-2.0 -lisenssillä: ttps://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
+TypeScript itsessään on lisensoitu Apache-2.0 -lisenssillä: https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
 
 ## Ts-node
 
