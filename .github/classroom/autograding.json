@@ -1,7 +1,7 @@
 {
     "tests": [
         {
-            "name": "1.1 Post interface",
+            "name": "1.1 Post interface should contain strings",
             "setup": "",
             "run": "cat src/types/Post.ts",
             "input": "",
@@ -11,7 +11,7 @@
             "points": 20
         },
         {
-            "name": "1.2 Post interface",
+            "name": "1.2 Post interface should contain userId",
             "setup": "",
             "run": "cat src/types/Post.ts",
             "input": "",
@@ -21,7 +21,7 @@
             "points": 20
         },
         {
-            "name": "2.3 Running Jest tests",
+            "name": "2.3 Jest tests should pass",
             "setup": "npm install",
             "run": "npm test",
             "input": "",
