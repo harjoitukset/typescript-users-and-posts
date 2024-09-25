@@ -1,25 +1,34 @@
 {
     "tests": [
-      {
-        "name": "Part 1&#58; Post interface &#40;2p&#41;",
-        "setup": "",
-        "run": "cat src/types/Post.ts",
-        "input": "",
-        "output": "string",
-        "comparison": "included",
-        "timeout": 1,
-        "points": 2
-      },
-      {
-        "name": "Part 2&#58; Combining Users with Posts &#40;3p&#41;",
-        "setup": "npm install",
-        "run": "npm test",
-        "input": "",
-        "output": "",
-        "comparison": "included",
-        "timeout": 1,
-        "points": 3
-      }
+        {
+            "name": "1.1 Post interface",
+            "setup": "",
+            "run": "cat src/types/Post.ts",
+            "input": "",
+            "output": "string",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 20
+        },
+        {
+            "name": "1.2 Post interface",
+            "setup": "",
+            "run": "cat src/types/Post.ts",
+            "input": "",
+            "output": "userId",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 20
+        },
+        {
+            "name": "2.3 Running Jest tests",
+            "setup": "npm install",
+            "run": "npm test",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 60
+        }
     ]
-  }
-  
+}
