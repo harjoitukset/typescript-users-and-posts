@@ -8,17 +8,17 @@
  * https://github.com/Ovi/DummyJSON/blob/master/src/data/users.json file.
  */
 
-export interface Hair {
+export type Hair = {
     color: string;
     type: string;
 }
 
-export interface Coordinates {
+export type Coordinates = {
     lat: number;
     lng: number;
 }
 
-export interface Address {
+export type Address = {
     address: string;
     city: string;
     coordinates: Coordinates;
@@ -26,7 +26,7 @@ export interface Address {
     state: string;
 }
 
-export interface Bank {
+export type Bank = {
     cardExpire: string;
     cardNumber: string;
     cardType: string;
@@ -34,7 +34,7 @@ export interface Bank {
     iban: string;
 }
 
-export interface Company {
+export type Company = {
     address: Address;
     department: string;
     name: string;
@@ -42,7 +42,7 @@ export interface Company {
 }
 
 
-export default interface User {
+export type User = {
     id: number;
     firstName: string;
     lastName: string;

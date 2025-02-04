@@ -30,15 +30,15 @@ Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/packa
 
 ## Tehtävän data
 
-Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./users.json) sekä [posts.json](./posts.json) on ladattu suoraan tehtäväpohjaan DummyJSON-projektin [GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/), joten niitä ei tarvitse ladata ohjelmassasi verkon yli, vaan ne voidaan lukea tiedostojärjestelmästä.
+Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./data/users.json) sekä [posts.json](./data/posts.json) on ladattu suoraan tehtäväpohjaan DummyJSON-projektin [GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/), joten niitä ei tarvitse ladata ohjelmassasi verkon yli, vaan ne voidaan lukea tiedostojärjestelmästä.
 
-**Users:** [users.json](./users.json)
+**Users:** [users.json](./data/users.json)
 
 -   Dokumentaatio: https://dummyjson.com/docs/users
 -   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/users.json
 -   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENCE
 
-**Posts:** [posts.json](./posts.json)
+**Posts:** [posts.json](./data/posts.json)
 
 -   Dokumentaatio: https://dummyjson.com/docs/posts
 -   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/posts.json
@@ -63,11 +63,11 @@ let users = require('../users.json') as User[];
 let posts = require('../posts.json') as Post[];
 ```
 
-Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva rajapinta (interface) [omaan tiedostoonsa](./src/types/Post.ts).
+Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva tyyppi [omaan tiedostoonsa](./src/types/Post.ts).
 
-## Osa 1: Post interface (40 %)
+## Osa 1: Post-tyyppi (40 %)
 
-Tehtävän 1. osassa sinun tulee määritellä [posts.json](./posts.json) -tiedoston datalle oma tietotyyppi `interface Post`. Yksittäinen Post-objekti on muodoltaan esimerkiksi seuraavanlainen:
+Tehtävän 1. osassa sinun tulee määritellä [posts.json](./data/posts.json) -tiedoston datalle oma tietotyyppi `type Post`. Yksittäinen Post-objekti on muodoltaan esimerkiksi seuraavanlainen:
 
 ```json
 {
@@ -80,12 +80,12 @@ Tehtävän 1. osassa sinun tulee määritellä [posts.json](./posts.json) -tiedo
 }
 ```
 
-Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi interface:a, koska niitä ei käytetä tehtävän seuraavassa osassa. Määrittele tyyppiin **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Interface tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts). Luomasi interface tulee julkaista `export default`-avainsanoilla, esim:
+Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi tyyppiä, koska niitä ei käytetä tehtävän seuraavassa osassa. Määrittele tyyppiin **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Tyyppi tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts). Luomasi tyyppi tulee julkaista `export default`-avainsanoilla, esim:
 
 ```ts
-export default interface Post {
-    // ...
-}
+export type Post = {
+  // ...
+};
 ```
 
 💡 _TypeScript-tyyppejä voidaan muodostaa manuaalisesti, mutta tyyppejä voidaan myös generoida varsin suoraviivaisesti olemassa oleville JSON-tietorakenteille esim. ChatGPT:n tai [muiden online-työkalujen](https://www.google.com/search?q=json+to+typescript+type+online) avulla. **Jos generoit tyypit automaattisesti, lisää koodiisi kommenttina lähdeviite käyttämääsi työkaluun tai palveluun**._
@@ -152,6 +152,7 @@ $ npm test
 
 Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin _Message_-kohtaan.
 
+
 # Lisenssit ja tekijänoikeudet
 
 ## Node.js
@@ -176,7 +177,7 @@ TypeScript itsessään on lisensoitu Apache-2.0 -lisenssillä: https://github.co
 
 ## DummyJSON
 
-Tehtävässä hyödynnetyn [DummyJSON](https://github.com/Ovi/DummyJSON/)-palvelun on kehittänyt [Muhammad Ovi (Owais)](https://github.com/Ovi/) ja se on lisensoitu MIT-lisenssillä: [https://github.com/Ovi/DummyJSON/blob/master/LICENCE](https://github.com/Ovi/DummyJSON/blob/master/LICENCE).
+Tehtävässä hyödynnetyn [DummyJSON](https://github.com/Ovi/DummyJSON/)-palvelun on kehittänyt [Muhammad Ovi (Owais)](https://github.com/Ovi/) ja se on lisensoitu MIT-lisenssillä: [https://github.com/Ovi/DummyJSON/blob/master/LICENSE](https://github.com/Ovi/DummyJSON/blob/master/LICENSE).
 
 ## Tämä tehtävä
 
