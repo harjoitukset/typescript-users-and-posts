@@ -36,13 +36,13 @@ Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](ht
 
 -   Dokumentaatio: https://dummyjson.com/docs/users
 -   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/users.json
--   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENCE
+-   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENSE
 
 **Posts:** [posts.json](./data/posts.json)
 
 -   Dokumentaatio: https://dummyjson.com/docs/posts
 -   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/posts.json
--   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENCE
+-   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENSE
 
 ### JSON-tietojen lukeminen ja tyypittäminen
 
