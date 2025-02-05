@@ -49,18 +49,18 @@ Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](ht
 JSON-muotoinen data voidaan lukea Node.js-sovellukseen yksinkertaisesti [require](https://nodejs.org/en/knowledge/getting-started/what-is-require/)-funktiolla, esimerkiksi seuraavasti:
 
 ```js
-let posts = require("../posts.json"); // posts: any
-let users = require("../users.json"); // users: any
+let posts = require("../data/posts.json"); // posts: any
+let users = require("../data/users.json"); // users: any
 ```
 
 `require`-funktio voi palauttaa mitä tahansa JavaScript- tai JSON-tietotyyppejä, joten sen paluuarvon tyyppi on TypeScriptissä `any`. Käytännössä molemmat JSON-tiedostot sisältävät taulukon käyttäjistä ja heihin liittyvistä viesteistä (post). Näin ollen [niiden tyypit voidaan kertoa TypeScript-kääntäjälle `as`-avainsanan avulla](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
 
 ```js
-import User from './types/User';
-import Post from './types/Post';
+import { User } from './types/User';
+import { Post } from './types/Post';
 
-let users = require('../users.json') as User[];
-let posts = require('../posts.json') as Post[];
+let users = require('../data/users.json') as User[];
+let posts = require('../data/posts.json') as Post[];
 ```
 
 Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva tyyppi [omaan tiedostoonsa](./src/types/Post.ts).
