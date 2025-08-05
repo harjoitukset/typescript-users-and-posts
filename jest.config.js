@@ -1,16 +1,11 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  testPathIgnorePatterns: ['/node_modules/', '/bin/', '/build/'],
+const { createDefaultPreset } = require("ts-jest");
 
-  // see https://kulshekhar.github.io/ts-jest/docs/getting-started/options/isolatedModules/
+const tsJestTransformCfg = createDefaultPreset().transform;
+
+/** @type {import("jest").Config} **/
+module.exports = {
+  testEnvironment: "node",
   transform: {
-    '^.+\\.m?[tj]sx?$': [
-      'ts-jest',
-      {
-        isolatedModules: true,
-      },
-    ],
+    ...tsJestTransformCfg,
   },
 };
