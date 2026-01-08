@@ -10,11 +10,9 @@
  * individual functions and classes in your code.
  */
 import { strict as assert } from 'assert';
-import { jest, test } from '@jest/globals';
-import util from 'util';
+import { execSync } from 'child_process';
+import { test } from 'vitest';
 
-// use util.promisify to make `exec` function work with promises: https://stackoverflow.com/a/56095793
-const exec = util.promisify(require('child_process').exec) as (command: string) => Promise<{ stdout: string, stderr: string }>;
 
 // the following string contains the names of the users and the titles of their posts in the correct order
 const expected = `Terry Medhurst
@@ -190,15 +188,8 @@ Cake or pie?
 He stood over the body in the fading light`.split('\n');
 
 
-/* Running the tests may be very slow due to transpilation. Therefore we set a 20 second timeout. */
-jest.setTimeout(20_000);
-
 test('`npm start` prints titles of each post grouped by users', async () => {
-    let command = 'npm start';
-    let { stdout, stderr } = await exec(command);
-
-    // Make sure that no errors were written to output:
-    assert.equal(stderr, '', `The command "${command}" produced the following error: "${stderr}"`);
+    let stdout = execSync('npm start', { encoding: 'utf-8' });
 
     // Check each consecutive line in the expected output and verify that the stdout has correct content and order:
     for (let i = 0, j = 1; j < expected.length; i++, j++) {

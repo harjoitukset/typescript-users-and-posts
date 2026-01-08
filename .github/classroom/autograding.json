@@ -21,7 +21,7 @@
             "points": 20
         },
         {
-            "name": "2.3 Jest tests should pass",
+            "name": "2.3 Tests should pass",
             "setup": "npm install",
             "run": "npm test",
             "input": "",

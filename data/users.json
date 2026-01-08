@@ -715,6 +715,7 @@
     "company": {
       "address": {
         "address": "388 East Main Street",
+        "city": "Richford",
         "coordinates": {
           "lat": 43.9727945,
           "lng": -73.1023187
@@ -2585,6 +2586,7 @@
     "ip": "237.72.61.168",
     "address": {
       "address": "388 East Main Street",
+      "city": "Castleton",
       "coordinates": {
         "lat": 43.9727945,
         "lng": -73.1023187
@@ -4190,6 +4192,7 @@
     "company": {
       "address": {
         "address": "388 East Main Street",
+        "city": "Rutland",
         "coordinates": {
           "lat": 43.9727945,
           "lng": -73.1023187
@@ -4779,6 +4782,7 @@
     "ip": "29.114.152.100",
     "address": {
       "address": "270 Chrissy's Court",
+      "city": "Burlington",
       "coordinates": {
         "lat": 44.1710043,
         "lng": -73.1065617

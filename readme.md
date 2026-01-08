@@ -1,6 +1,6 @@
 # TypeScriptin tyypit: Users & Posts
 
-Tässä tehtävässä harjoitellaan TypeScriptin tyyppien määrittelyä ja tyyppien hyödyntämistä osana ohjelmalogiikkaa Node.js-ympäristössä. Tehtävänä on lukea kahdesta erillisestä JSON-tiedostosta käyttäjiä ja postauksia, ja yhdistellä käyttäjät niitä vastaaviin postauksiin.
+Tässä tehtävässä harjoitellaan TypeScriptin tyyppien määrittelyä ja tyyppien hyödyntämistä osana ohjelmalogiikkaa Node.js-ympäristössä. Tehtävänä on lukea kahdesta erillisestä JSON-tiedostosta [käyttäjiä](./data/users.json) ja [postauksia](./data/posts.json), ja yhdistellä käyttäjät niitä vastaaviin postauksiin.
 
 Tehtävän suorittamiseksi tarvitset [Node.js-suoritusympäristön](https://nodejs.org/) sekä npm-pakettienhallintasovelluksen, joka tulee tyypillisesti Node.js-asennuksissa mukana. Suosittelemme käyttämään tehtävissä [uusinta LTS-versiota (Long Term Support)](https://github.com/nodejs/release#release-schedule).
 
@@ -23,10 +23,10 @@ Kloonatessasi repositoriota **varmista, että Git-osoitteen lopussa on oma GitHu
 Aloita asentamalla projektin riippuvuudet, jotka on määritelty `package.json`-tiedostossa:
 
 ```sh
-$ npm install
+npm install
 ```
 
-Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/package/typescript), [Jest-testaustyökalun](https://www.npmjs.com/package/jest) että [`ts-node`](https://www.npmjs.com/package/ts-node)- ja [`ts-jest`](https://www.npmjs.com/package/ts-jest)-paketit TypeScript-kielisen koodin ja testien suorittamiseksi Node.js:llä. Itse Node.js sinulta tulee löytyä valmiina.
+Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/package/typescript), [Vitest-testaustyökalun](https://www.npmjs.com/package/vitest) että [`tsx`](https://www.npmjs.com/package/tsx)-paketin TypeScript-kielisen koodin suorittamiseksi Node.js:llä. Lisäksi mukana on [@types/node](https://www.npmjs.com/package/@types/node)-paketti, joka sisältää Node.js:n tyyppimäärittelyt.
 
 ## Tehtävän data
 
@@ -46,21 +46,14 @@ Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](ht
 
 ### JSON-tietojen lukeminen ja tyypittäminen
 
-JSON-muotoinen data voidaan lukea Node.js-sovellukseen yksinkertaisesti [require](https://nodejs.org/en/knowledge/getting-started/what-is-require/)-funktiolla, esimerkiksi seuraavasti:
+JSON-muotoista dataa voidaan käsitellä Node.js-sovelluksissa useilla eri tavoilla. Tyypillisesti dataa saadaan joko http-pyyntöjen kautta tai sitä voidaan lukea tiedostojärjestelmästä. Tässä tehtävässä data on tallennettu paikallisiin tiedostoihin, joten ne luetaan suoraan tiedostojärjestelmästä käyttäen Node.js:n `readFile`- ja `JSON.parse`-funktioita. Tiedostot lukeva koodi löytyy valmiina tehtäväpohjasta tiedostosta [src/usersAndPosts.ts](./src/usersAndPosts.ts):
 
-```js
-let posts = require("../data/posts.json"); // posts: any
-let users = require("../data/users.json"); // users: any
-```
+```ts
+// these variables specify the relative paths to the JSON files:
+const usersFile = new URL('../data/users.json', import.meta.url);
 
-`require`-funktio voi palauttaa mitä tahansa JavaScript- tai JSON-tietotyyppejä, joten sen paluuarvon tyyppi on TypeScriptissä `any`. Käytännössä molemmat JSON-tiedostot sisältävät taulukon käyttäjistä ja heihin liittyvistä viesteistä (post). Näin ollen [niiden tyypit voidaan kertoa TypeScript-kääntäjälle `as`-avainsanan avulla](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions):
-
-```js
-import { User } from './types/User';
-import { Post } from './types/Post';
-
-let users = require('../data/users.json') as User[];
-let posts = require('../data/posts.json') as Post[];
+// the file is read and parsed into an array of User objects:
+const users: User[] = JSON.parse(await readFile(usersFile, 'utf8'));
 ```
 
 Yllä esiintyvä `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva tyyppi [omaan tiedostoonsa](./src/types/Post.ts).
@@ -71,16 +64,16 @@ Tehtävän 1. osassa sinun tulee määritellä [posts.json](./data/posts.json) -
 
 ```json
 {
-    "id": 1,
-    "title": "His mother had always taught him",
-    "body": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto...",
-    "userId": 9,
-    "tags": ["history", "american", "crime"],
-    "reactions": 2
+    "id": 42,
+    "title": "When the compiler laughs at you",
+    "body": "I spent three hours debugging my TypeScript code, only to realize I had a semicolon in the wrong place.",
+    "userId": 67,
+    "tags": ["typescript", "debugging", "programmer-life", "bugs"],
+    "reactions": 1337
 }
 ```
 
-Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi tyyppiä, koska niitä ei käytetä tehtävän seuraavassa osassa. Määrittele tyyppiin **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Tyyppi tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts). Luomasi tyyppi tulee julkaista `export default`-avainsanoilla, esim:
+Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi tyyppiä, koska niitä ei käytetä tehtävän seuraavassa osassa. Määrittele tyyppiin **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Tyyppi tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts). Luomasi tyyppi tulee julkaista tiedostosta seuraavasti:
 
 ```ts
 export type Post = {
@@ -129,7 +122,7 @@ MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 Kun olet asentanut tehtäväpohjan riippuvuudet `npm install`-komennolla, voit suorittaa ratkaisusi `npm start`-komennolla:
 
 ```sh
-$ npm start
+npm start
 ```
 
 `start`-skripti sekä testeissä käytetty `test`-skripti on määritetty [package.json](./package.json)-tiedostossa seuraavasti:
@@ -137,17 +130,17 @@ $ npm start
 ```js
 {
   "scripts": {
-    "start": "ts-node src/usersAndPosts.ts",
-    "test": "jest --verbose"
+    "start": "tsx src/usersAndPosts.ts",
+    "test": "vitest run"
   },
-  "devDependencies": { /* ... */ }
+  /* ... */
 }
 ```
 
-`npm start` suorittaa taustalla komennon `ts-node src/usersAndPosts.ts`. Testit suoritetaan puolestaan [Jest-testityökalun](https://jestjs.io/) avulla komennolla `npm test`:
+`npm start` suorittaa taustalla komennon `tsx src/usersAndPosts.ts`. Testit suoritetaan puolestaan [Vitest-testityökalun](https://vitest.dev/) avulla komennolla `npm test`:
 
 ```sh
-$ npm test
+npm test
 ```
 
 Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin _Message_-kohtaan.
@@ -165,15 +158,13 @@ Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virhera
 
 TypeScript itsessään on lisensoitu Apache-2.0 -lisenssillä: https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
 
-## Ts-node
+## Vitest
 
-> _ts-node is licensed under the MIT license. [MIT](https://github.com/TypeStrong/ts-node/blob/main/LICENSE)_
->
-> _ts-node includes source code from Node.js which is licensed under the MIT license. [Node.js license information](https://raw.githubusercontent.com/nodejs/node/master/LICENSE)_
->
-> _ts-node includes source code from the TypeScript compiler which is licensed under the Apache License 2.0. [TypeScript license information](https://github.com/microsoft/TypeScript/blob/master/LICENSE.txt)_
->
-> https://github.com/TypeStrong/ts-node/#license
+Vitest-työkalu on lisensoitu MIT-lisenssillä: https://github.com/vitest-dev/vitest/blob/main/LICENSE
+
+### Tsx
+
+Tsx-työkalu on lisensoitu MIT-lisenssillä: https://github.com/privatenumber/tsx/blob/master/LICENSE
 
 ## DummyJSON
 
