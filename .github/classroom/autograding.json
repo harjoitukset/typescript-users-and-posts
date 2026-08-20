@@ -23,7 +23,7 @@
         {
             "name": "2.3 Tests should pass",
             "setup": "npm install",
-            "run": "npm test",
+            "run": "npm run build && npm test",
             "input": "",
             "output": "",
             "comparison": "included",
