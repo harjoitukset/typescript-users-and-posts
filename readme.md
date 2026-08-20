@@ -131,7 +131,7 @@ Build-komento on määritetty [package.json](./package.json)-tiedostossa. Se suo
 node dist/usersAndPosts.js
 ```
 
-[package.json-tiedostossa](./package.json) on määritetty myös `start`-skripti, joka suorittaa vastaavan saman komennon.
+[package.json-tiedostossa](./package.json) on määritetty myös `start`-skripti, joka suorittaa saman tiedoston:
 
 ```sh
 npm start
