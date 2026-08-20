@@ -11,7 +11,7 @@
  */
 import { strict as assert } from 'assert';
 import { execSync } from 'child_process';
-import { test } from 'vitest';
+import { describe, test } from 'vitest';
 
 
 // the following string contains the names of the users and the titles of their posts in the correct order
@@ -188,17 +188,27 @@ Cake or pie?
 He stood over the body in the fading light`.split('\n');
 
 
-test('`npm start` prints titles of each post grouped by users', async () => {
+describe('printing users and posts with `npm start`', () => {
+    // the output of the `npm start` command
     let stdout = execSync('npm start', { encoding: 'utf-8' });
 
-    // Check each consecutive line in the expected output and verify that the stdout has correct content and order:
-    for (let i = 0, j = 1; j < expected.length; i++, j++) {
-        let first = expected[i];
-        let second = expected[j];
+    test('all users and posts are present in the output', () => {
+        for (let line of expected) {
+            assert.ok(stdout.includes(line), `the output should contain text "${line}" but it does not`);
+        }
+    });
 
-        assert.ok(stdout.includes(first), `the output should contain text "${first}" but it does not`);
-        assert.ok(stdout.includes(second), `the output should contain text "${second}" but it does not`);
+    test('the output is in correct order', async () => {
 
-        assert.ok(stdout.indexOf(first) < stdout.indexOf(second), `line "${first}" should be before "${second}", but it is not`)
-    }
+        // Check each consecutive line in the expected output and verify that the stdout has correct content and order:
+        for (let i = 0, j = 1; j < expected.length; i++, j++) {
+            let first = expected[i];
+            let second = expected[j];
+
+            assert.ok(stdout.includes(first), `the output should contain text "${first}" but it does not`);
+            assert.ok(stdout.includes(second), `the output should contain text "${second}" but it does not`);
+
+            assert.ok(stdout.indexOf(first) < stdout.indexOf(second), `line "${first}" should be before "${second}", but it is not`)
+        }
+    })
 });
