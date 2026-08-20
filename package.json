@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "TypeScript exercise with users and posts data from DummyJSON",
   "scripts": {
-    "start": "tsx src/usersAndPosts.ts",
+    "build": "tsc --project tsconfig.build.json",
+    "start": "node dist/usersAndPosts.js",
     "test": "vitest run"
-  },
-  "devDependencies": {
-    "@types/node": "^22",
-    "tsx": "^4",
-    "typescript": "^5",
-    "vitest": "^4"
   },
   "type": "module",
   "engines": {
     "node": ">=22.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
   }
 }

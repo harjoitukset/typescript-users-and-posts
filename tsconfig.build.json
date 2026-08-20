@@ -1,0 +1,17 @@
+/**
+ * This file defines the TypeScript configuration for building the project.
+ * It extends the base `tsconfig.json` file only includes the source files
+ * in the `src` directory and excludes the test files.
+ */
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./src/",
+        "outDir": "./dist/",
+        "declaration": true,
+        "noEmit": false
+    },
+    "include": [
+        "./src/**/*.ts"
+    ]
+}

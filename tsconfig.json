@@ -1,17 +1,25 @@
-/* Visit https://aka.ms/tsconfig to read more about this file */
+/**
+ * This is the TypeScript configuration file for the project.
+ *
+ * It covers both the source code and the test files, and it specifies the compiler
+ * options for TypeScript. When building the project, we do not want to include
+ * the test files, so there is a separate `tsconfig.build.json` file that extends
+ * this configuration and excludes the test files.
+ */
 {
     "compilerOptions": {
         "target": "es2022", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
         "module": "nodenext", /* Specify what module code is generated. */
-        "rootDir": "src", /* Specify the root folder within your source files. */
-        "outDir": "build", /* Specify an output folder for all emitted files. */
+        "types": [
+            "node" /* Include type definitions for Node.js */
+        ],
         "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
         "strict": true, /* Enable all strict type-checking options. */
         "moduleResolution": "nodenext", /* see https://www.typescriptlang.org/docs/handbook/modules/theory.html#module-resolution */
+        "noEmit": true, /* Do not emit JavaScript files. Use the tsconfig.build.json to build and exclude tests. */
     },
-    "exclude": [
-        "src/**/*.test.ts",
-        "node_modules",
-        "build"
+    "include": [
+        "./src/**/*.ts",
+        "./tests/**/*.ts"
     ]
 }
