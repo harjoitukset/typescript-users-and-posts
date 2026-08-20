@@ -1,6 +1,6 @@
 # TypeScriptin tyypit: Users & Posts
 
-Tässä tehtävässä harjoitellaan TypeScriptin tyyppien määrittelyä ja tyyppien hyödyntämistä osana ohjelmalogiikkaa Node.js-ympäristössä. Tehtävänä on lukea kahdesta erillisestä JSON-tiedostosta [käyttäjiä](./data/users.json) ja [postauksia](./data/posts.json), ja yhdistellä käyttäjät niitä vastaaviin postauksiin.
+Tässä tehtävässä harjoitellaan TypeScriptin tyyppien määrittelyä ja tyyppien hyödyntämistä osana ohjelmalogiikkaa. Tehtävänä on lukea kahdesta erillisestä JSON-tiedostosta [käyttäjiä](./data/users.json) ja [postauksia](./data/posts.json), ja yhdistellä käyttäjät niitä vastaaviin postauksiin.
 
 Tehtävän suorittamiseksi tarvitset [Node.js-suoritusympäristön](https://nodejs.org/) sekä npm-pakettienhallintasovelluksen, joka tulee tyypillisesti Node.js-asennuksissa mukana. Suosittelemme käyttämään tehtävissä [uusinta LTS-versiota (Long Term Support)](https://github.com/nodejs/release#release-schedule).
 
@@ -35,13 +35,13 @@ Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](ht
 **Users:** [users.json](./data/users.json)
 
 -   Dokumentaatio: https://dummyjson.com/docs/users
--   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/users.json
+-   Lähde: https://github.com/Ovi/DummyJSON/blob/master/raw/users/users.json
 -   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENSE
 
 **Posts:** [posts.json](./data/posts.json)
 
 -   Dokumentaatio: https://dummyjson.com/docs/posts
--   Lähde: https://github.com/Ovi/DummyJSON/blob/master/src/data/posts.json
+-   Lähde: https://github.com/Ovi/DummyJSON/blob/master/raw/posts/posts.json
 -   Lisenssi: https://github.com/Ovi/DummyJSON/blob/master/LICENSE
 
 
@@ -49,7 +49,7 @@ Tehtävässä hyödynnetään staattista JSON-muotoista dataa [dummyjson.com](ht
 
 JSON-muotoista dataa voidaan käsitellä Node.js-sovelluksissa useilla eri tavoilla. Tyypillisesti dataa saadaan esimerkiksi http-pyyntöjen kautta tai sitä voidaan lukea tiedostojärjestelmästä tai tietokannasta.
 
-Tässä tehtävässä data on tallennettu paikallisiin tiedostoihin, joten ne luetaan suoraan tiedostojärjestelmästä käyttäen `readFile`- ja `JSON.parse`-funktioita. TypeScript ei pysty etukäteen päättelemään ajonaikaisesti luettavien JSON-tiedostojen tietotyyppejä, joten ne täytyy määritellä itse.
+Tässä tehtävässä data on tallennettu paikallisiin tiedostoihin, joten ne luetaan suoraan tiedostojärjestelmästä käyttäen [`readFile`-funktiota](https://nodejs.org/api/fs.html#fspromisesreadfilepath-options) ja muutetaan JS-olioksi [`JSON.parse`-funktiolla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse). Koska tiedostojen lukeminen ja parsiminen tapahtuvat ajonaikaisesti, TypeScript ei pysty etukäteen päättelemään niiden tietotyyppejä. Tyypit tulee siis määritellä itse.
 
 `User`-tyyppi on ennalta määritetty omassa [valmiissa tiedostossaan](./src/types/User.ts), mutta sinun tulee itse määritellä `Post`-tietotyypille sopiva tyyppi [omaan tiedostoonsa](./src/types/Post.ts).
 
@@ -69,12 +69,10 @@ Tehtävän 1. osassa sinun tulee määritellä [posts.json](./data/posts.json) -
 }
 ```
 
-Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi tyyppiä, koska niitä ei käytetä tehtävän seuraavassa osassa.
-
-Määrittele tyyppiin **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Tyyppi tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts), josta löydät myös valmiin pohjan, jota voit täydentää.
+Kaikkia attribuutteja ei ole aivan välttämätöntä määritellä osaksi tyyppiä, koska niitä ei käytetä tehtävän seuraavassa osassa. Määrittele **vähintään** attribuutit `id`, `title`, `body` ja `userId`. Tyyppi tulee tallentaa tiedostoon [src/types/Post.ts](./src/types/Post.ts), josta löydät myös valmiin pohjan, jota voit täydentää.
 
 > [!NOTE]
-> TypeScript-tyyppejä voidaan muodostaa manuaalisesti, mutta tyyppejä voidaan myös generoida varsin suoraviivaisesti olemassa oleville JSON-tietorakenteille esim. kielimallien tai [online-työkalujen](https://www.google.com/search?q=json+to+typescript+type+online) avulla.
+> TypeScript-tyyppejä voidaan muodostaa "käsin", mutta tyyppejä voidaan myös generoida varsin suoraviivaisesti olemassa oleville JSON-tietorakenteille esim. kielimallien tai [online-työkalujen](https://www.google.com/search?q=json+to+typescript+type+online) avulla.
 >
 > Jos generoit tyypit automaattisesti, lisää koodiisi kommenttina vapaamuotoinen lähdeviite käyttämääsi työkaluun tai palveluun.
 
@@ -102,17 +100,17 @@ Postaukset voidaan yhdistää käyttäjiin vertailemalla `Post`-olioiden `userId
 ...
 ```
 
-Ratkaisusi käyttöliittymän ei tarvitse noudattaa pilkulleen annettuja esimerkkejä, mutta toimintalogiikan tulee olla oleellisilta osin samanlainen. Automaattisen arvioinnin vuoksi ohjelmasi tulee esim. käynnistyä samoilla komennoilla kuin tehtävänannossa on esitetty.
+Ratkaisusi käyttöliittymän ei tarvitse noudattaa pilkulleen yllä olevaa esimerkkiä, mutta toimintalogiikan tulee olla oleellisilta osin samanlainen. Automaattisen arvioinnin vuoksi ohjelmasi tulee myös esimerkiksi kääntyä käynnistyä samoilla komennoilla kuin tehtävänannossa on esitetty.
 
 Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muuta datassa esiintyviä nimiä, otsikoita tai niiden keskinäistä järjestystä. **Käyttäjien ja kunkin käyttäjän omien postausten tulee olla samassa järjestyksessä keskenään kuin annetuissa JSON-tiedostoissa**.
 
 > [!TIP]
 > 💡 Logiikka voidaan toteuttaa esimerkiksi sisäkkäisillä toistorakenteilla, mutta tässä tehtävässä tarkoituksena on harjoitella ECMAScriptin edistyneempiä ominaisuuksia sekä esimerkiksi `map`-, `filter`- ja `forEach`-taulukkofunktioita. Suosittelemme siis vahvasti perehtymään esimerkiksi seuraaviin lähteisiin:
 >
-> -   [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-> -   [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-> -   [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-> -   [reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+> - [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+> - [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+> - [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+> - [reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 >
 > MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 
@@ -121,7 +119,7 @@ Arvioinnin kannalta tulosteen yksityiskohdilla ei ole painoarvoa, kunhan et muut
 
 Varmista, että olet ensin asentanut tehtäväpohjan riippuvuudet `npm install`-komennolla.
 
-Sen jälkeen voit kääntää TypeScript-koodin JavaScriptiksi suorittamalla projektin juuressa seuraavan komennon:
+Asennuksen jälkeen voit kääntää TypeScript-koodin JavaScriptiksi suorittamalla projektin juuressa seuraavan komennon:
 
 ```sh
 npm run build
@@ -133,7 +131,7 @@ Build-komento on määritetty [package.json](./package.json)-tiedostossa. Se suo
 node dist/usersAndPosts.js
 ```
 
-[package.json-tiedostossa](./package.json) on määritetty myös `start`-skripti, joka suorittaa vastaavan komennon.
+[package.json-tiedostossa](./package.json) on määritetty myös `start`-skripti, joka suorittaa vastaavan saman komennon.
 
 ```sh
 npm start
@@ -145,17 +143,18 @@ npm start
 > Halutessasi voit suorittaa kääntämisen ja suorittamisen yhdellä komennolla esimerkiksi seuraavasti:
 >
 > ```sh
-> npm run build && npm start    # käännä ja suorita
+> npm run build && npm start    # unix-tyyppiset komentorivit
+> npm run build; npm start      # PowerShell
 > ```
 >
-> Käyttämästäsi komentorivistä riippuen voit myös käyttää `&&`-operaattorin sijasta `;`-operaattoria (PowerShell). Tällöin kuitenkin molemmat komennot suoritetaan riippumatta siitä, onnistuiko kääntäminen vai ei.
+> Halutessasi voit myös tutustua Node.js:n dokumentaatiossa sivuun ["Running TypeScript with a runner"](https://nodejs.org/learn/typescript/run#running-typescript-code-with-tsx).
 
 
 ## Ohjelman testaaminen
 
 Tehtävälle on toteutettu valmiit testit, jotka löytyvät [./tests/usersAndPosts.test.ts](./tests/usersAndPosts.test.ts)-tiedostosta.
 
-Testeissä hyödynnetään [Vitest-testityökalua](https://vitest.dev/) ja voit suorittaa ne `npm test`-komennolla:
+Testeissä hyödynnetään [Vitest-testityökalua](https://vitest.dev/) ja voit suorittaa testit `npm test`-komennolla:
 
 ```sh
 npm test
@@ -167,10 +166,9 @@ Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virhera
 > Kuten koodia suoritettaessa, myös testejä suoritettaessa TypeScript-koodi tulee ensin kääntää JavaScriptiksi. Voit suorittaa käännöksen ja testien ajon yhdellä komennolla esimerkiksi seuraavasti:
 >
 > ```sh
-> npm run build && npm test    # käännä ja suorita testit
+> npm run build && npm test   # unix-tyyppiset komentorivit
+> npm run build ; npm test    # PowerShell
 > ```
->
-> Voit käyttää komentorivistä riippuen `&&`-operaattorin sijasta `;`-operaattoria (PowerShell).
 
 
 ## Ratkaisun lähettäminen ja arviointi
